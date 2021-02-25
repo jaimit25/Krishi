@@ -20,6 +20,21 @@ class crudMethods {
     return await FirebaseFirestore.instance.collection('products').get();
   }
 
+  Future<QuerySnapshot> myuser(uid) async {
+    return await FirebaseFirestore.instance
+        .collection('products')
+        .where('uid', isEqualTo: uid)
+        .get();
+  }
+
+  Future<QuerySnapshot> fav(uid) async {
+    return await FirebaseFirestore.instance
+        .collection('favourites')
+        .doc(uid)
+        .collection('fav')
+        .get();
+  }
+
   updateData(sDoc, newValues) {
     return FirebaseFirestore.instance
         .collection('products')
@@ -28,6 +43,16 @@ class crudMethods {
         .catchError((e) {
       print(e);
     });
+  }
+
+  deletefav(uid, docId) async {
+    return await FirebaseFirestore.instance
+        .collection('favourites')
+        .doc(uid)
+        .collection('fav')
+        .doc(docId)
+        .delete()
+        .catchError((e) => print(e));
   }
 
   deleteUser(docId) {

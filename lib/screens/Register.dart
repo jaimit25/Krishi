@@ -3,6 +3,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:krishi/animation/FadeAnimation.dart';
+import 'package:krishi/screens/login.dart';
 
 import '../navigation.dart';
 
@@ -279,10 +280,19 @@ class _RegisterState extends State<Register> {
                         SizedBox(
                           height: 5,
                         ),
-                        Container(
-                          child: Text(
-                            "Already a User? Login Now",
-                            style: TextStyle(color: Colors.greenAccent),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Login()));
+                          },
+                          child: Container(
+                            child: Text(
+                              "Already a User? Login Now",
+                              style: TextStyle(color: Colors.greenAccent),
+                            ),
                           ),
                         )
                       ],

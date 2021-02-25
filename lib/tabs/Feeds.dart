@@ -43,115 +43,88 @@ class _FeedsState extends State<Feeds> {
             return ListView(
               children: snapshot.data.docs.map((document) {
                 return Container(
-                  // color: Colors.grey[100],
-                  padding: EdgeInsets.only(
-                    bottom: 10,
-                    // left: 3,
-                    // right: 3,
-                  ),
-                  // decoration: BoxDecoration(
-                  //   color: Colors.tealAccent,
-                  //   border: Border.all(
-                  //       color: Colors.black,
-                  //       width: 0.6,
-                  //       style: BorderStyle.solid),
-                  //   borderRadius: BorderRadius.only(
-                  //     topLeft: Radius.circular(14),
-                  //     topRight: Radius.circular(14),
-                  //     bottomLeft: Radius.circular(14),
-                  //     bottomRight: Radius.circular(14),
-                  //   ),
-                  //   // color: Colors.grey[200],
-                  // ),
-
-                  margin: EdgeInsets.only(
-                    top: 5,
-                  ),
-                  // margin: EdgeInsets.only(top: 2),
-                  // color: Colors.blue,
-                  // width: MediaQuery.of(context).size.width,
-                  // height: 90,
-                  // child: Center(
-                  //   child: Text(document['Caption']),
-                  // ),
-
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: 3,
-                        ),
-                        // color: Colors.grey[100],
-                        decoration: BoxDecoration(color: Colors.tealAccent
-                            // borderRadius: BorderRadius.only(
-                            //   topLeft: Radius.circular(5),
-                            //   topRight: Radius.circular(5),
-                            // ),
-                            // color: Colors.grey[200],
+                    margin: EdgeInsets.only(bottom: 6),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 5, right: 5, top: 10),
+                          height: 40,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Color(0xff0e8740),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              topRight: Radius.circular(5),
                             ),
-
-                        height: 60,
-                        width: MediaQuery.of(context).size.width,
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                document['Head'],
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 16,
-                                ),
+                          ),
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              document["Head"],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 8, right: 8),
-                        height: 300,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(document['Photo']),
-                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                      Container(
-                        color: Colors.tealAccent,
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {});
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(5),
-                                margin: EdgeInsets.only(top: 10),
-                                child: Icon(Icons.self_improvement_outlined,
-                                    size: 30, color: Colors.black),
+                        Container(
+                          margin: EdgeInsets.only(left: 0, right: 0, top: 1),
+                          height: 300,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Color(0xffffffff),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.grey[600],
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(5),
+                              bottomRight: Radius.circular(5),
+                            ),
+                          ),
+                          child: Container(
+                            height: 400,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(document['Photo']),
                               ),
                             ),
-                            Container(
-                              width: 300,
-                              padding: EdgeInsets.only(
-                                  left: 10, top: 10, bottom: 5, right: 10),
-                              child: Text(
-                                document['body'],
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
+                        Container(
+                          margin: EdgeInsets.only(left: 5, right: 5, top: 1),
+                          padding: EdgeInsets.all(10),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Color(0xff0e8740),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(5),
+                              bottomRight: Radius.circular(5),
+                            ),
+                          ),
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              document["body"],
+                              maxLines: 5,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ));
               }).toList(),
             );
           },
@@ -159,12 +132,12 @@ class _FeedsState extends State<Feeds> {
       ),
       floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.view_list,
-        backgroundColor: Colors.tealAccent,
+        backgroundColor: Color(0xff000000),
         children: [
           SpeedDialChild(
             child: Icon(
               Icons.add,
-              color: Colors.tealAccent,
+              color: Colors.black,
             ),
             backgroundColor: Colors.white,
             label: "Add feeds",

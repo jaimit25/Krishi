@@ -1,28 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:krishi/Services/crud.dart';
-import 'package:krishi/screens/AddProduct.dart';
-import 'package:krishi/screens/MyPro.dart';
+import 'package:krishi/navigation.dart';
 import 'package:krishi/screens/ShowDish.dart';
-import 'package:krishi/screens/ShowFav.dart';
 
-class Value extends StatefulWidget {
+class MyPro extends StatefulWidget {
   @override
-  _ValueState createState() => _ValueState();
+  _MyProState createState() => _MyProState();
 }
 
-class _ValueState extends State<Value> {
+class _MyProState extends State<MyPro> {
   Query _ref;
   QuerySnapshot ast;
   crudMethods crudObj = new crudMethods();
   FirebaseAuth _auth = FirebaseAuth.instance;
 
+  User user;
+  String uid;
+
   @override
   void initState() {
-    crudObj.user().then((QuerySnapshot results) {
+    getCurrentUser();
+    crudObj.myuser(uid).then((QuerySnapshot results) {
       setState(() {
         ast = results;
       });
@@ -44,27 +45,27 @@ class _ValueState extends State<Value> {
     return Dismissible(
       key: Key(Index),
       onDismissed: (direction) {
-        FirebaseFirestore.instance
-            .collection('favourites')
-            .doc(uid)
-            .collection('fav')
-            .add({
-          'uid': uid,
-          'Price': Price,
-          'Description': Description,
-          'Photo': Photo,
-          'Name': Name,
-        }).then((value) {
-          Fluttertoast.showToast(
-              msg: 'Suceffully Added To Favourites',
-              toastLength: Toast.LENGTH_LONG,
-              backgroundColor: Colors.black,
-              textColor: Colors.white,
-              timeInSecForIosWeb: 3,
-              gravity: ToastGravity.BOTTOM);
-        });
+        // FirebaseFirestore.instance
+        //     .collection('favourites')
+        //     .doc(uid)
+        //     .collection('fav')
+        //     .add({
+        //   'uid': uid,
+        //   'Price': Price,
+        //   'Description': Description,
+        //   'Photo': Photo,
+        //   'Name': Name,
+        // }).then((value) {
+        //   Fluttertoast.showToast(
+        //       msg: 'Suceffully Added To Favourites',
+        //       toastLength: Toast.LENGTH_LONG,
+        //       backgroundColor: Colors.black,
+        //       textColor: Colors.white,
+        //       timeInSecForIosWeb: 3,
+        //       gravity: ToastGravity.BOTTOM);
+        // });
 
-        // crudObj.deleteUser(Index);
+        crudObj.deleteUser(Index);
         // Navigator.push(
         //     context,
         //     MaterialPageRoute(
@@ -178,10 +179,19 @@ class _ValueState extends State<Value> {
         appBar: AppBar(
           backgroundColor: Color(0xff0e8740),
           title: Text(
-            'Buy & Sell',
+            'Favourites',
             style: TextStyle(
-                fontSize: 18, color: Colors.white, fontWeight: FontWeight.w700),
+                fontSize: 18, fontWeight: FontWeight.w700, color: Colors.white),
           ),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.forward_rounded),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Navigation()));
+                })
+          ],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -206,51 +216,6 @@ class _ValueState extends State<Value> {
             ),
           ],
         ),
-        floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.view_list,
-          backgroundColor: Color(0xff0e8740),
-          children: [
-            SpeedDialChild(
-              child: Icon(
-                Icons.add,
-                color: Colors.black,
-              ),
-              backgroundColor: Colors.white,
-              label: "Add product",
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddProduct()));
-              },
-            ),
-            SpeedDialChild(
-              child: Icon(
-                Icons.turned_in_rounded,
-                color: Colors.black,
-              ),
-              backgroundColor: Colors.white,
-              label: "My Products",
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyPro()));
-              },
-            ),
-            SpeedDialChild(
-              child: Icon(
-                Icons.favorite,
-                color: Colors.red,
-              ),
-              backgroundColor: Colors.white,
-              label: "Show Favourites",
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ShowFav()));
-              },
-            ),
-          ],
-        ),
       );
     } else {
       return Scaffold(
@@ -259,5 +224,15 @@ class _ValueState extends State<Value> {
         ),
       );
     }
+  }
+
+  getCurrentUser() async {
+    print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+    var user1 = FirebaseAuth.instance.currentUser;
+    setState(() {
+      user = user1;
+    });
+    uid = user.uid;
+    print(uid);
   }
 }

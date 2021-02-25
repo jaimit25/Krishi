@@ -47,7 +47,7 @@ class _NavigationState extends State<Navigation> {
             ]),
         items: [
           TabItem(icon: Icon(Icons.house_outlined, size: 25)),
-          TabItem(icon: Icon(Icons.assignment_sharp, size: 25)),
+          TabItem(icon: Icon(Icons.local_grocery_store_outlined, size: 25)),
           TabItem(icon: Icon(Icons.add_box_outlined, size: 25)),
           TabItem(icon: Icon(Icons.person, size: 25)),
         ],

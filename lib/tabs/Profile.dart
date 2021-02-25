@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:krishi/Models/UserProfile.dart';
+import 'package:krishi/screens/editprofile.dart';
+import 'package:krishi/screens/login.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -115,6 +117,11 @@ class _ProfileState extends State<Profile> {
                     // ),
                     GestureDetector(
                       onTap: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => editprofile()));
                         print('Edited');
                       },
                       child: Container(
@@ -346,7 +353,10 @@ class _ProfileState extends State<Profile> {
             ),
             GestureDetector(
               onTap: () {
-                print('Edited');
+                FirebaseAuth.instance.signOut();
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Login()));
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),

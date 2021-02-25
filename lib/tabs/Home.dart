@@ -1,5 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:krishi/navigation.dart';
+import 'package:krishi/screens/GrowCrops.dart';
+import 'package:krishi/screens/ShowDish.dart';
+import 'package:krishi/tabs/Profile.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -128,7 +132,303 @@ class _HomeState extends State<Home> {
                 Container(
                   margin: EdgeInsets.only(top: 20),
                   child: Slider(),
-                )
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => GrowCrops()));
+                  },
+                  child: Container(
+                      margin: EdgeInsets.only(left: 10, right: 10, top: 20),
+                      height: 120,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Color(0xffffffff),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.grey[600],
+                            blurRadius: 5.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 80,
+                            margin: EdgeInsets.only(left: 30),
+                            child: Image.asset("assets/images/planting.png"),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "How to crop Plant?",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            margin: EdgeInsets.only(left: 10, right: 20),
+                            child: Icon(Icons.arrow_forward_ios_sharp),
+                          ),
+                        ],
+                      )),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 20,
+                    bottom: 10,
+                    left: 20,
+                  ),
+                  child: Text(
+                    'Government Yojanas',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 10,
+                    right: 10,
+                    left: 10,
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Navigation()));
+                            },
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    child:
+                                        Image.asset("assets/images/pkvj.png"),
+                                    height: 120,
+
+                                    width: double.infinity,
+                                    // child: Image.network(
+                                    //   "https://i.ibb.co/QdQ3CQK/undraw-wishes-icyp.png",
+                                    //   fit: BoxFit.cover,
+                                    // ),
+                                  ),
+                                ],
+                              ),
+                              margin: EdgeInsets.all(10),
+                              padding: EdgeInsets.all(10),
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey[600],
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(20.0),
+                                gradient: new LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    // Color.fromARGB(255, 25, 178, 238),
+                                    Colors.white,
+                                    Colors.white
+                                  ],
+                                ),
+                                // border: Border.all(
+                                // )
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Navigation()));
+                            },
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    child: Image.asset(
+                                        "assets/images/pradhan.jpg"),
+                                    height: 140,
+                                    width: double.infinity,
+                                    // child: Image.network(
+                                    //   "https://i.ibb.co/QdQ3CQK/undraw-wishes-icyp.png",
+                                    //   fit: BoxFit.cover,
+                                    // ),
+                                  ),
+                                ],
+                              ),
+                              margin: EdgeInsets.all(5),
+                              padding: EdgeInsets.all(5),
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey[600],
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(20.0),
+                                gradient: new LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    // Color.fromARGB(255, 25, 178, 238),
+                                    Colors.white,
+                                    Colors.white
+                                  ],
+                                ),
+                                // border: Border.all(
+                                // )
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Navigation()));
+                            },
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    child: Image.asset("assets/images/gbm.png"),
+                                    height: 140,
+                                    width: double.infinity,
+                                    // child: Image.network(
+                                    //   "https://i.ibb.co/QdQ3CQK/undraw-wishes-icyp.png",
+                                    //   fit: BoxFit.cover,
+                                    // ),
+                                  ),
+                                ],
+                              ),
+                              margin: EdgeInsets.all(5),
+                              padding: EdgeInsets.all(5),
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey[600],
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(20.0),
+                                gradient: new LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    // Color.fromARGB(255, 25, 178, 238),
+                                    Colors.white,
+                                    Colors.white
+                                  ],
+                                ),
+                                // border: Border.all(
+                                // )
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Navigation()));
+                            },
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    child:
+                                        Image.asset("assets/images/enam.jpeg"),
+                                    height: 140,
+                                    width: double.infinity,
+                                    // child: Image.network(
+                                    //   "https://i.ibb.co/QdQ3CQK/undraw-wishes-icyp.png",
+                                    //   fit: BoxFit.cover,
+                                    // ),
+                                  ),
+                                ],
+                              ),
+                              margin: EdgeInsets.all(5),
+                              padding: EdgeInsets.all(5),
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  new BoxShadow(
+                                    color: Colors.grey[600],
+                                    blurRadius: 5.0,
+                                  ),
+                                ],
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(20.0),
+                                gradient: new LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    // Color.fromARGB(255, 25, 178, 238),
+                                    Colors.white,
+                                    Colors.white
+                                  ],
+                                ),
+                                // border: Border.all(
+                                // )
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                      )
+                    ],
+                  ),
+                ),
               ],
             )),
       ),
