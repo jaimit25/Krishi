@@ -71,7 +71,7 @@ class _FeedsState extends State<Feeds> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 0, right: 0, top: 1),
+                          margin: EdgeInsets.only(left: 5, right: 5, top: 1),
                           height: 300,
                           width: double.infinity,
                           decoration: BoxDecoration(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:krishi/navigation.dart';
 import 'package:krishi/screens/GrowCrops.dart';
 import 'package:krishi/screens/ShowDish.dart';
+import 'package:krishi/screens/expert.dart';
 import 'package:krishi/tabs/Profile.dart';
 
 class Home extends StatefulWidget {
@@ -166,10 +167,12 @@ class _HomeState extends State<Home> {
                             child: Image.asset("assets/images/planting.png"),
                           ),
                           Container(
-                            margin: EdgeInsets.only(left: 20),
+                            width: 110,
+                            margin: EdgeInsets.only(left: 20, right: 10),
                             alignment: Alignment.center,
                             child: Text(
                               "How to crop Plant?",
+                              maxLines: 3,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
@@ -179,9 +182,61 @@ class _HomeState extends State<Home> {
                           ),
                           Container(
                             height: 30,
-                            margin: EdgeInsets.only(left: 10, right: 20),
+                            margin: EdgeInsets.only(left: 6),
                             child: Icon(Icons.arrow_forward_ios_sharp),
                           ),
+                        ],
+                      )),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => expert()));
+                  },
+                  child: Container(
+                      margin: EdgeInsets.only(left: 10, right: 10, top: 20),
+                      height: 80,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Color(0xffffffff),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.grey[600],
+                            blurRadius: 5.0,
+                          ),
+                        ],
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            margin: EdgeInsets.only(left: 30),
+                            child: Image.asset("assets/images/agent.png"),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Ask Our Experts..",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17,
+                              ),
+                            ),
+                          ),
+                          // Container(
+                          //   height: 30,
+                          //   margin: EdgeInsets.only(left: 10, right: 20),
+                          //   child: Icon(Icons.arrow_forward_ios_sharp),
+                          // ),
                         ],
                       )),
                 ),
