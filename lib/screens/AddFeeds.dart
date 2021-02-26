@@ -70,139 +70,142 @@ class _AddfeedsState extends State<Addfeeds> {
         ),
       ),
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            onTap: () {
-              uploadImage();
-            },
-            child: imageurl != null
-                ? Container(
-                    height: 200,
-                    // decoration: BoxDecoration(
-                    //   shape: BoxShape.rectangle,
-                    //   image: DecorationImage(
-                    //     fit: BoxFit.cover,
-                    //     image: NetworkImage(imageurl),
-                    //   ),
-                    // ),
-                    child: Image.network(imageurl),
-                  )
-                : Container(
-                    height: 200,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage('assets/images/crop.jpeg'),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            GestureDetector(
+              onTap: () {
+                uploadImage();
+              },
+              child: imageurl != null
+                  ? Container(
+                      height: 200,
+                      // decoration: BoxDecoration(
+                      //   shape: BoxShape.rectangle,
+                      //   image: DecorationImage(
+                      //     fit: BoxFit.cover,
+                      //     image: NetworkImage(imageurl),
+                      //   ),
+                      // ),
+                      child: Image.network(imageurl),
+                    )
+                  : Container(
+                      height: 200,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/images/crop.jpeg'),
+                        ),
                       ),
                     ),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 10),
+              height: 60,
+              decoration: BoxDecoration(),
+              margin: EdgeInsets.only(top: 20, left: 10, right: 10),
+              child: TextFormField(
+                controller: heading,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+                decoration: InputDecoration(
+                  hintStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
                   ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 10),
-            height: 60,
-            decoration: BoxDecoration(),
-            margin: EdgeInsets.only(top: 20, left: 10, right: 10),
-            child: TextFormField(
-              controller: heading,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
+                  hintText: 'Add heading',
+                  // border: InputBorder.none
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    value = headfeed;
+                  });
+                },
               ),
-              decoration: InputDecoration(
-                hintStyle: TextStyle(
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 10),
+              height: 60,
+              decoration: BoxDecoration(),
+              margin: EdgeInsets.only(top: 20, left: 10, right: 10),
+              child: TextFormField(
+                controller: bodymaterial,
+                style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                 ),
-                hintText: 'Add heading',
-                // border: InputBorder.none
+                decoration: InputDecoration(
+                  hintStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                  ),
+                  hintText: 'Add Body',
+                  // border: InputBorder.none
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    value = bodyfeed;
+                  });
+                },
               ),
-              onChanged: (value) {
-                setState(() {
-                  value = headfeed;
+            ),
+            GestureDetector(
+              onTap: () {
+                print(heading.text);
+                print(
+                    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+                FirebaseFirestore.instance.collection('Feed').add({
+                  'Photo': imageurl,
+                  'Head': heading.text,
+                  'body': bodymaterial.text,
                 });
+                Navigator.of(context).pop();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Navigation()));
               },
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 10),
-            height: 60,
-            decoration: BoxDecoration(),
-            margin: EdgeInsets.only(top: 20, left: 10, right: 10),
-            child: TextFormField(
-              controller: bodymaterial,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-              ),
-              decoration: InputDecoration(
-                hintStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
+              child: Container(
+                margin: EdgeInsets.all(10),
+                height: 50,
+                decoration: BoxDecoration(
+                  gradient: new LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      // Color.fromARGB(255, 25, 178, 238),
+                      Colors.tealAccent,
+                      Colors.tealAccent
+                    ],
+                  ),
+                  // color: Colors.black,
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                hintText: 'Add Body',
-                // border: InputBorder.none
-              ),
-              onChanged: (value) {
-                setState(() {
-                  value = bodyfeed;
-                });
-              },
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              print(heading.text);
-              print(
-                  'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-              FirebaseFirestore.instance.collection('Feed').add({
-                'Photo': imageurl,
-                'Head': heading.text,
-                'body': bodymaterial.text,
-              });
-              Navigator.of(context).pop();
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Navigation()));
-            },
-            child: Container(
-              margin: EdgeInsets.all(10),
-              height: 50,
-              decoration: BoxDecoration(
-                gradient: new LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    // Color.fromARGB(255, 25, 178, 238),
-                    Colors.tealAccent,
-                    Colors.tealAccent
-                  ],
-                ),
-                // color: Colors.black,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Center(
-                child: Text(
-                  'Add Feed',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20),
+                child: Center(
+                  child: Text(
+                    'Add Feed',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20),
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

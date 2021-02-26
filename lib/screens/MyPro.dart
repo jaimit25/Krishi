@@ -179,7 +179,7 @@ class _MyProState extends State<MyPro> {
         appBar: AppBar(
           backgroundColor: Color(0xff0e8740),
           title: Text(
-            'Favourites',
+            'My Prodcut\'s',
             style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w700, color: Colors.white),
           ),
