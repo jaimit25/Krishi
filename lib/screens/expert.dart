@@ -188,7 +188,7 @@ class _expertState extends State<expert> {
           //               Fluttertoast.showToast(
           //                   msg: "Cannot send empty message",
           //                   timeInSecForIosWeb: 1,
-          //                   gravity: ToastGravity.BOTTOM,
+          //                   graavity: ToastGravity.BOTTOM,
           //                   toastLength: Toast.LENGTH_LONG,
           //                   backgroundColor: Colors.red,
           //                   textColor: Colors.white);
@@ -238,7 +238,7 @@ class _expertState extends State<expert> {
                       color: Colors.black38,
                       fontSize: 18,
                     ),
-                    hintText: 'Add Comment',
+                    hintText: 'Type a message...',
                     border: InputBorder.none),
                 onChanged: (value) {
                   setState(() {

@@ -271,6 +271,10 @@ class _editprofileState extends State<editprofile> {
                             borderRadius: BorderRadius.circular(20)),
                         onPressed: () {
                           Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Navigation()));
                         },
                         child: Text("CANCEL",
                             style: TextStyle(
@@ -283,9 +287,9 @@ class _editprofileState extends State<editprofile> {
                           if (_formKey.currentState.validate()) {
                             updatechanges();
                             Navigator.of(context).pop();
-                            // Navigator.of(context).pushReplacement(
-                            //     MaterialPageRoute(
-                            //         builder: (context) => Navigation()));
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => Navigation()));
                           }
                         },
                         color: Color(0xff0e8740),

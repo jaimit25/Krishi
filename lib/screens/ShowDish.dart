@@ -1,16 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:krishi/Models/UserProfile.dart';
 import 'package:krishi/navigation.dart';
+import 'package:krishi/screens/ShowUser.dart';
 
 class ShowDish extends StatelessWidget {
   String Name, Description, Photo, Price, Id, Index;
+  String UserPhoto, UserName, UserEmail, UserPhone, UserCity;
   ShowDish(
       {this.Name,
       this.Description,
       this.Photo,
       this.Price,
       this.Id,
-      this.Index});
+      this.Index,
+      this.UserPhoto,
+      this.UserName,
+      this.UserEmail,
+      this.UserPhone,
+      this.UserCity});
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +169,24 @@ class ShowDish extends StatelessWidget {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      print(Id);
+
+                      print(
+                          'yyyyyyyyyyyyyyyyyyyyyyyyggggggggggggggggggggggggvvvvbbbbbbbbj');
+                      print(UserName);
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ShowUser(
+                                    UserPhoto: UserPhoto,
+                                    UserCity: UserCity,
+                                    UserEmail: UserEmail,
+                                    UserName: UserName,
+                                    UserPhone: UserPhone,
+                                  )));
+                    },
                     child: Container(
                       // margin: EdgeInsets.only(bottom: 10),
                       height: 50,

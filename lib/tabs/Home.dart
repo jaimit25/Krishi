@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:krishi/navigation.dart';
+import 'package:krishi/screens/Articles.dart';
 import 'package:krishi/screens/GrowCrops.dart';
 import 'package:krishi/screens/ShowDish.dart';
 import 'package:krishi/screens/expert.dart';
@@ -218,17 +219,17 @@ class _HomeState extends State<Home> {
                           Container(
                             padding: EdgeInsets.all(5),
                             margin: EdgeInsets.only(left: 30),
-                            child: Image.asset("assets/images/agent.png"),
+                            child: Image.asset("assets/images/chat.png"),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 20),
                             alignment: Alignment.center,
                             child: Text(
-                              "Ask Our Experts..",
+                              "Have Questions? Ask here...",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 17,
+                                fontSize: 13,
                               ),
                             ),
                           ),
@@ -273,7 +274,14 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Navigation()));
+                                      builder: (context) => Articles(
+                                            Head:
+                                                'Paramparagat Krishi Vikas Yojna',
+                                            ImageUrl:
+                                                'https://firebasestorage.googleapis.com/v0/b/krishi-8a44b.appspot.com/o/pkvy.jfif?alt=media&token=e549bcec-f7b7-4d93-be06-5108c683dc04',
+                                            Body:
+                                                'Paramparagat Krishi Vikas Yojna (PKVY)" a sub-component of Soil Health Management(SHM) scheme under National Mission of Sustainable Agriculture(NMSA) aims at development of sustainable models of organic farming through a mix of traditional wisdom and modern science to ensure long term soil fertility buildup, resource conservation and helps in climate change adapatation and mitigation.',
+                                          )));
                             },
                             child: Container(
                               child: Column(
@@ -325,7 +333,14 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Navigation()));
+                                      builder: (context) => Articles(
+                                            Head:
+                                                'Paramparagat Krishi Vikas Yojna',
+                                            ImageUrl:
+                                                'https://firebasestorage.googleapis.com/v0/b/krishi-8a44b.appspot.com/o/pkvy.jfif?alt=media&token=e549bcec-f7b7-4d93-be06-5108c683dc04',
+                                            Body:
+                                                'Paramparagat Krishi Vikas Yojna (PKVY)" a sub-component of Soil Health Management(SHM) scheme under National Mission of Sustainable Agriculture(NMSA) aims at development of sustainable models of organic farming through a mix of traditional wisdom and modern science to ensure long term soil fertility buildup, resource conservation and helps in climate change adapatation and mitigation.',
+                                          )));
                             },
                             child: Container(
                               child: Column(
@@ -380,7 +395,14 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Navigation()));
+                                      builder: (context) => Articles(
+                                            Head:
+                                                'Paramparagat Krishi Vikas Yojna',
+                                            ImageUrl:
+                                                'https://firebasestorage.googleapis.com/v0/b/krishi-8a44b.appspot.com/o/pkvy.jfif?alt=media&token=e549bcec-f7b7-4d93-be06-5108c683dc04',
+                                            Body:
+                                                'Paramparagat Krishi Vikas Yojna (PKVY)" a sub-component of Soil Health Management(SHM) scheme under National Mission of Sustainable Agriculture(NMSA) aims at development of sustainable models of organic farming through a mix of traditional wisdom and modern science to ensure long term soil fertility buildup, resource conservation and helps in climate change adapatation and mitigation.',
+                                          )));
                             },
                             child: Container(
                               child: Column(
@@ -430,7 +452,14 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Navigation()));
+                                      builder: (context) => Articles(
+                                            Head:
+                                                'Paramparagat Krishi Vikas Yojna',
+                                            ImageUrl:
+                                                'https://firebasestorage.googleapis.com/v0/b/krishi-8a44b.appspot.com/o/pkvy.jfif?alt=media&token=e549bcec-f7b7-4d93-be06-5108c683dc04',
+                                            Body:
+                                                'Paramparagat Krishi Vikas Yojna (PKVY)" a sub-component of Soil Health Management(SHM) scheme under National Mission of Sustainable Agriculture(NMSA) aims at development of sustainable models of organic farming through a mix of traditional wisdom and modern science to ensure long term soil fertility buildup, resource conservation and helps in climate change adapatation and mitigation.',
+                                          )));
                             },
                             child: Container(
                               child: Column(

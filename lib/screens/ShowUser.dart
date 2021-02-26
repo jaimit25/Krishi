@@ -1,55 +1,24 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:krishi/Models/UserProfile.dart';
-import 'package:krishi/screens/editprofile.dart';
-import 'package:krishi/screens/login.dart';
+import 'package:krishi/navigation.dart';
+import 'package:krishi/tabs/Profile.dart';
 
-class Profile extends StatefulWidget {
-  @override
-  _ProfileState createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
+class ShowUser extends StatelessWidget {
+  String UserPhoto, UserName, UserEmail, UserPhone, UserCity;
+  ShowUser(
+      {this.UserPhoto,
+      this.UserName,
+      this.UserEmail,
+      this.UserPhone,
+      this.UserCity});
   userprofile localuser;
   FirebaseAuth _auth;
   User user;
   String test;
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getCurrentUser();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Loader();
-  }
-
-  Widget Loader() {
-    return FutureBuilder(
-      future:
-          FirebaseFirestore.instance.collection('users').doc(user.uid).get(),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (!snapshot.hasData) {
-          return loadingwidget();
-        }
-        return profilepage();
-      },
-    );
-  }
-
-  Widget loadingwidget() {
-    return Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-  }
-
-  Widget profilepage() {
     return Scaffold(
       body: Container(
         child: ListView(
@@ -79,7 +48,7 @@ class _ProfileState extends State<Profile> {
                           colorFilter: new ColorFilter.mode(
                               Colors.black.withOpacity(0.1), BlendMode.darken),
                           fit: BoxFit.cover,
-                          image: NetworkImage(localuser.Photo),
+                          image: NetworkImage(UserPhoto),
                         ),
                       ),
                     ),
@@ -88,7 +57,7 @@ class _ProfileState extends State<Profile> {
                         top: 10,
                       ),
                       child: Text(
-                        localuser.Name,
+                        UserName,
                         style: GoogleFonts.laila(
                           textStyle: TextStyle(
                             color: Colors.white,
@@ -115,42 +84,42 @@ class _ProfileState extends State<Profile> {
                     //     ),
                     //   ),
                     // ),
-                    GestureDetector(
-                      onTap: () {
-                        // Navigator.of(context).pop();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => editprofile()));
-                        print('Edited');
-                      },
-                      child: Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        height: 26,
-                        width: 90,
-                        padding: EdgeInsets.only(left: 5, right: 5),
-                        child: Center(
-                          child: Text(
-                            'Edit Profile',
-                            style: GoogleFonts.laila(
-                              textStyle: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 2,
-                              color: Colors.white,
-                            ),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                      ),
-                    ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     Navigator.of(context).pop();
+                    //     Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (context) =>Profile()));
+                    //     print('Edited');
+                    //   },
+                    //   child: Container(
+                    //     margin:
+                    //         EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    //     height: 26,
+                    //     width: 90,
+                    //     padding: EdgeInsets.only(left: 5, right: 5),
+                    //     child: Center(
+                    //       child: Text(
+                    //         'Edit Profile',
+                    //         style: GoogleFonts.laila(
+                    //           textStyle: TextStyle(
+                    //             color: Colors.white,
+                    //             fontWeight: FontWeight.w700,
+                    //             fontSize: 13,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     decoration: BoxDecoration(
+                    //         border: Border.all(
+                    //           width: 2,
+                    //           color: Colors.white,
+                    //         ),
+                    //         borderRadius:
+                    //             BorderRadius.all(Radius.circular(10))),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -192,7 +161,7 @@ class _ProfileState extends State<Profile> {
                                 Container(
                                   margin: EdgeInsets.only(left: 10),
                                   child: Text(
-                                    localuser.Name,
+                                    UserName,
                                     style: GoogleFonts.laila(
                                       textStyle: TextStyle(
                                         fontWeight: FontWeight.w600,
@@ -239,7 +208,7 @@ class _ProfileState extends State<Profile> {
                               Container(
                                 margin: EdgeInsets.only(left: 10),
                                 child: Text(
-                                  localuser.city,
+                                  UserCity,
                                   style: GoogleFonts.laila(
                                     textStyle: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -285,7 +254,7 @@ class _ProfileState extends State<Profile> {
                               Container(
                                 margin: EdgeInsets.only(left: 10),
                                 child: Text(
-                                  localuser.phone,
+                                  UserPhone,
                                   style: GoogleFonts.laila(
                                     textStyle: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -332,7 +301,7 @@ class _ProfileState extends State<Profile> {
                               Container(
                                 margin: EdgeInsets.only(left: 10),
                                 child: Text(
-                                  localuser.Email,
+                                  UserEmail,
                                   style: GoogleFonts.laila(
                                     textStyle: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -355,15 +324,15 @@ class _ProfileState extends State<Profile> {
               onTap: () {
                 FirebaseAuth.instance.signOut();
                 Navigator.of(context).pop();
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Login()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Navigation()));
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                 height: 50,
                 child: Center(
                   child: Text(
-                    'Log Out',
+                    'Back to Home',
                     style: GoogleFonts.laila(
                       textStyle: TextStyle(
                         color: Colors.white,
@@ -388,25 +357,5 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
-  }
-
-  getCurrentUser() async {
-    var user1 = FirebaseAuth.instance.currentUser;
-    setState(() {
-      user = user1;
-    });
-    final uid = user.uid;
-    print(uid);
-    var doc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user.uid)
-        .get();
-    print(doc.data);
-
-    setState(() {
-      localuser = userprofile.fromDocument(doc);
-    });
-    print(localuser.Email);
-    print('this method has run');
   }
 }

@@ -59,7 +59,7 @@ class _AddProductState extends State<AddProduct> {
             ),
           )
         ],
-        backgroundColor: Colors.tealAccent,
+        backgroundColor: Color(0xff0e8740),
         title: Text(
           'Add Product',
           style: GoogleFonts.laila(
@@ -123,7 +123,7 @@ class _AddProductState extends State<AddProduct> {
                 decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.add_shopping_cart_sharp,
-                      color: Colors.tealAccent,
+                      color: Color(0xff0e8740),
                     ),
                     hintStyle: TextStyle(
                       color: Colors.black,
@@ -153,7 +153,7 @@ class _AddProductState extends State<AddProduct> {
                       decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.calculate_rounded,
-                            color: Colors.tealAccent,
+                            color: Color(0xff0e8740),
                           ),
                           hintStyle: TextStyle(
                             color: Colors.black,
@@ -182,7 +182,7 @@ class _AddProductState extends State<AddProduct> {
                 decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.notes_rounded,
-                      color: Colors.tealAccent,
+                      color: Color(0xff0e8740),
                     ),
                     hintStyle: TextStyle(
                       color: Colors.black,
@@ -223,8 +223,8 @@ class _AddProductState extends State<AddProduct> {
                     end: Alignment.bottomRight,
                     colors: [
                       // Color.fromARGB(255, 25, 178, 238),
-                      Colors.tealAccent,
-                      Colors.tealAccent
+                      Color(0xff0e8740),
+                      Color(0xff0e8740)
                     ],
                   ),
                   // color: Colors.black,
@@ -232,7 +232,7 @@ class _AddProductState extends State<AddProduct> {
                 ),
                 child: Center(
                   child: Text(
-                    'Add Feed',
+                    'Add Product',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,

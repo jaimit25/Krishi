@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:krishi/Models/UserProfile.dart';
 import 'package:krishi/Services/crud.dart';
 import 'package:krishi/screens/AddProduct.dart';
 import 'package:krishi/screens/MyPro.dart';
@@ -19,6 +20,7 @@ class _ValueState extends State<Value> {
   QuerySnapshot ast;
   crudMethods crudObj = new crudMethods();
   FirebaseAuth _auth = FirebaseAuth.instance;
+  userprofile localuser;
 
   @override
   void initState() {
@@ -81,6 +83,11 @@ class _ValueState extends State<Value> {
       ),
       child: GestureDetector(
         onTap: () {
+          print(uid);
+          getData(uid);
+
+          print(localuser.Email);
+
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -91,6 +98,11 @@ class _ValueState extends State<Value> {
                         Price: Price,
                         Id: uid,
                         Index: Index,
+                        UserPhoto: localuser.Photo,
+                        UserName: localuser.Name,
+                        UserEmail: localuser.Email,
+                        UserPhone: localuser.phone,
+                        UserCity: localuser.city,
                       )));
         },
         child: Card(
@@ -259,5 +271,13 @@ class _ValueState extends State<Value> {
         ),
       );
     }
+  }
+
+  Future<void> getData(uid) async {
+    var doc =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    setState(() {
+      localuser = userprofile.fromDocument(doc);
+    });
   }
 }
